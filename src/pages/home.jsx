@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { checkHealth, subscribe, unsubscribe } from "../api/endpoints";
 
+const DEFAULT_API_BASE = "http://127.0.0.1:8080";
+
 function Home() {
     const [uid, setUid] = useState('')
-    const [apiBase, setApiBase] = useState('')
+    const [apiBase, setApiBase] = useState(
+        localStorage.getItem('apiBase') || DEFAULT_API_BASE
+    )
     const [status, setStatus] = useState('')
 
     const save = () => {

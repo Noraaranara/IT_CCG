@@ -28,3 +28,8 @@ This project now has a simple Python backend in `backend/`.
    `python backend/app/main.py`
 4. Open:
    `http://127.0.0.1:8080`
+
+### Frontend field `apiBase`
+
+Set `apiBase` to:
+`http://127.0.0.1:8080`
