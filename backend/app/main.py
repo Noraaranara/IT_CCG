@@ -17,6 +17,27 @@ async def health() -> JSONResponse:
     return JSONResponse({"status": "ok"})
 
 
+@app.get("/api/push/config")
+async def push_config() -> JSONResponse:
+    return JSONResponse(
+        {"enabled": False, "vapid_public_key": ""}
+    )
+
+
+@app.post("/api/push/subscribe")
+async def push_subscribe(uid: str) -> JSONResponse:
+    return JSONResponse(
+        {"ok": True, "uid": uid, "message": "push disabled"}
+    )
+
+
+@app.post("/api/push/unsubscribe")
+async def push_unsubscribe(uid: str) -> JSONResponse:
+    return JSONResponse(
+        {"ok": True, "uid": uid, "message": "push disabled"}
+    )
+
+
 @app.get("/", response_model=None)
 async def read_index():
     if not DIST_DIR.exists():

@@ -1,7 +1,20 @@
 import { useState } from "react";
-import { checkHealth, subscribe, unsubscribe } from "../api/endpoints";
+import { checkHealth, getPushConfig } from "../api/endpoints";
 
 const DEFAULT_API_BASE = "http://127.0.0.1:8080";
+
+function urlBase64ToUint8Array(base64String) {
+    const padding = "=".repeat((4 - (base64String.length % 4)) % 4)
+    const base64 = (base64String + padding)
+        .replace(/-/g, "+")
+        .replace(/_/g, "/")
+    const rawData = window.atob(base64)
+    const outputArray = new Uint8Array(rawData.length)
+    for (let i = 0; i < rawData.length; i += 1) {
+        outputArray[i] = rawData.charCodeAt(i)
+    }
+    return outputArray
+}
 
 function Home() {
     const [uid, setUid] = useState('')
